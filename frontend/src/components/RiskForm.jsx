@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Baby, Send } from "lucide-react";
 
+
 const birthTypeOptions = [
   { value: 1, label: "Single birth" },
   { value: 2, label: "Twin birth" },
@@ -40,7 +41,7 @@ const pregnancyWantedOptions = [
   { value: 1, label: "Not wanted / Wanted later" },
 ];
 
-const API_URL = "https://6f176dd6cc68.ngrok-free.app/predict";
+const API_URL = "https://3f1c8e8b8b57.ngrok-free.app/predict";
 
 const Field = ({ label, children }) => (
   <div className="flex flex-col gap-1">
@@ -151,9 +152,26 @@ const RiskForm = () => {
           </select>
         </Field>
 
-        <Field label="Mother's Age (years)">
-          <input type="number" name="v012" className="input" onChange={handleChange} />
-        </Field>
+       <Field label="Mother's Age (years)">
+  <input
+    type="number"
+    name="v012"
+    min={0}
+    placeholder="Enter age (15+)"
+    className="input"
+    value={formData.v012}
+    onChange={(e) =>
+      setFormData({ ...formData, v012: e.target.value })
+    }
+    onBlur={() => {
+      if (formData.v012 && Number(formData.v012) < 15) {
+        setError("Mother's age must be 15 years or older.");
+      } else {
+        setError(null);
+      }
+    }}
+  />
+</Field>
 
         <Field label="Place of Residence">
           <select name="v025" onChange={handleChange} className="input">

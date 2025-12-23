@@ -122,7 +122,7 @@ const RiskForm = () => {
         </Field>
 
         <Field label="Sex of Child">
-          <select name="b4" onChange={handleChange} className="input">
+          <select name="b4" onChange={handleChange} className="input required">
             <option value="">Select</option>
             {sexOptions.map(o => (
               <option key={o.value} value={o.value}>{o.label}</option>
@@ -131,7 +131,7 @@ const RiskForm = () => {
         </Field>
 
         <Field label="Preceding Birth Interval (months)">
-          <input type="number" name="b11" className="input" onChange={handleChange} />
+          <input type="number" name="b11" className="input" onChange={handleChange} placeholder="eg: 12" required />
         </Field>
 
         <Field label="Size of Child at Birth">
@@ -166,7 +166,9 @@ const RiskForm = () => {
     onBlur={() => {
       if (formData.v012 && Number(formData.v012) < 15) {
         setError("Mother's age must be 15 years or older.");
-      } else {
+      } else if (formData.v012 && Number(formData.v012) > 50) {
+        setError("Mother's age must be less than 50 years.");
+      } else{
         setError(null);
       }
     }}
@@ -183,7 +185,7 @@ const RiskForm = () => {
         </Field>
 
         <Field label="Number of Children in Household">
-          <input type="number" name="v136" className="input" onChange={handleChange} />
+          <input type="number" name="v136" className="input" onChange={handleChange} placeholder="eg: 3" />
         </Field>
 
         <Field label="Pregnancy Wanted Status">

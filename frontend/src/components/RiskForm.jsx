@@ -41,7 +41,7 @@ const pregnancyWantedOptions = [
   { value: 1, label: "Not wanted / Wanted later" },
 ];
 
-const API_URL = "https://3f1c8e8b8b57.ngrok-free.app/predict";
+const API_URL = " https://74fa5a7cd94e.ngrok-free.app/predict ";
 
 const Field = ({ label, children }) => (
   <div className="flex flex-col gap-1">
